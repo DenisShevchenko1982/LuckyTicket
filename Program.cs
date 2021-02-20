@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,34 +14,36 @@ namespace LuckyTicket
             {
                 var intList = new List<int>();
                 string sUserInput = "";
-                var sList = new List<string>();
                 bool validInput = true;
+                var sList = new List<string>();
+                
 
                 do
                 {
                     validInput = true;
-                    Console.WriteLine("Please, enter a space separated list of integers from 4 to 8 values.");
-                    Console.WriteLine("Press \"Enter\" after entering the last value:");
+                    Console.WriteLine("Please, enter a list of integers from 4 to 8 digits.");
+                    Console.WriteLine("Press \"Enter\" after entering the last digit:");
                     sUserInput = Console.ReadLine();
-                    sList = sUserInput.Split(' ').ToList();
+                    sList = sUserInput.Select(x => x.ToString()).ToList();
 
                     if ((sList.Count < 4) || (sList.Count > 8))
                     {
                         validInput = false;
-                        Console.WriteLine("Your list is incorrect.");
+                        Console.WriteLine("Please, Enter a list from 4 to 8 digits");
                         Console.WriteLine();
                     }
                     else
                     {
+
                         try
                         {
                             foreach (var item in sList) { intList.Add(int.Parse(item)); }
                         }
-                        catch 
+                        catch
                         {
                             validInput = false;
                             Console.WriteLine("\nAn error occurred.");
-                            Console.WriteLine("Please make sure you only enter integer values separated by a space.\n");
+                            Console.WriteLine("Please, make sure you only enter digits without any symbols.\n");
                         }
                     }
 
